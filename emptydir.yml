@@ -1,0 +1,37 @@
+
+#Emptydir{}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: konu
+  namespace: devops
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: chinnu
+  template:
+    metadata:
+      labels:
+        app: chinnu
+    spec:
+      containers:
+        - name: cont-1
+          image: nginx
+          command: ["/bin/bash", "-c", "while true; do echo 'hii everyonr'; sleep 5; done"]
+          volumeMounts:
+            - name: devops          
+              mountPath: "/tmp/jenkins"
+
+        - name: cont-2
+          image: centos
+          command: ["/bin/bash", "-c", "while true; do echo 'hii everyonr'; sleep 5; done"]
+          volumeMounts:
+            - name: devops
+              mountPath: "/opt/docker"
+
+
+      volumes:
+        - name: devops
+          emptyDir: {}        

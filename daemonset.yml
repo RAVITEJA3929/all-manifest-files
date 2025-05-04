@@ -1,0 +1,19 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: myds
+spec:
+  selector:
+    matchLabels:
+      app: sonu
+  template:
+    metadata:
+      labels:
+        app: sonu
+    spec:
+      containers:
+        - name: cont-1
+          image: nginx
+          ports:
+            - containerPort: 80
