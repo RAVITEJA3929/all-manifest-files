@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: firstcm111
+spec:
+  containers:
+    - name: cont-1
+      image: nginx
+      env:
+        - name: VALUE1
+          valueFrom:
+            configMapKeyRef:
+              key: place
+              name: firstcm
+
+        - name: VALUE2
+          valueFrom:
+            configMapKeyRef:
+              key: company
+              name: secondcm

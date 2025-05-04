@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fivecm
+data:
+  DATABASE_NAME: chandu
+  API_KEY: your_api_key
