@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+  namespace: bank
+spec:
+  containers:
+    - name: cont-1
+      image: nginx
+      resources:
+        requests:
+          cpu: "50m"
+          memory: "50Mi"
+        limits:
+          cpu: "100m"
+          memory: "100Mi"

@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resources
+  namespace: bank
+spec:
+  hard:
+    limits.cpu: "300m"
+    requests.cpu: "150m"
+    limits.memory: "400Mi"
+    requests.memory: "200Mi"
