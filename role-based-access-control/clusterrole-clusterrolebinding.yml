@@ -1,0 +1,29 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-role
+  namespace: dev
+rules:
+  - apiGroups: ["*"]
+    resources: ["pods", "deployments", "secrets"]
+    verbs: ["get", "list", "create"]
+
+  - apiGroups: ["*"]
+    resources: ["services", "daemonset", "configmap"]
+    verbs: ["get", "create", "delete"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-role-binding
+  namespace: dev
+subjects:
+  - kind: User
+    name: teja
+
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-role
