@@ -1,17 +1,19 @@
+---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-1
+  name: teja
 spec:
   containers:
-  - name: cont-1
-    image: ubuntu
-    command: ["/bin/bash", "-c", "touch /tmp/teja; sleep 300"]
-    livenessProbe:
-      exec:
-        command:
-        - cat
-        - /tmp/teja/
-      initialDelaySeconds: 5
-      periodSeconds: 5
-      timeoutSeconds: 30
+    - name: cont-1
+      image: shaikmustafa/dm
+      command: ["/bin/bash", "-c", "touch /tmp/teja; sleep 300"]
+      livenessProbe:
+        exec:
+          command:
+            - cat
+            - /tmp/teja
+        initialDelaySeconds: 5
+        periodSeconds: 5
+        timeoutSeconds: 30
+~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                           
