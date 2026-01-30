@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: teja-readiness
+spec:
+  containers:
+  - name: cont-1
+    image: shaikmustafa/dm
+    command: ["/bin/bash", "-c", "touch /tmp/teja; sleep 300"]
+    readinessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/teja
+      initialDelaySeconds: 3
+      periodSeconds: 10
+      timeoutSeconds: 5
+      successThreshold: 1
+      failureThreshold: 3
+

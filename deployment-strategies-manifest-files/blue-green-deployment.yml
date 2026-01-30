@@ -1,0 +1,59 @@
+# Blue Deployment (v1.0 - currently active)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-blue
+spec:
+  replicas: 5
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: app-blue
+  template:
+    metadata:
+      labels:
+        app: app-blue
+        version: v1.0
+    spec:
+      containers:
+      - name: app
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+---
+# Green Deployment (v1.1 - staging, initially 0 replicas)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-green
+spec:
+  replicas: 0
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: app-green
+  template:
+    metadata:
+      labels:
+        app: app-green
+        version: v1.1
+    spec:
+      containers:
+      - name: app
+        image: nginx:1.22
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-bluegreen-service
+spec:
+  selector:
+    app: app-blue  # Points to Blue initially
+  ports:
+  - port: 80
+    targetPort: 80
+
